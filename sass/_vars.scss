@@ -1,0 +1,19 @@
+//variables
+//--color-
+$primary-color:#f3f3f3;
+$heading-color:#fff;
+$links-color:$heading-color;
+$links-color-hover:yellow;
+$sub-heading-color:#ca3dc3;
+$body-color:#f4f4f4;
+//--fonts
+$body-font:Helvetica, sans-serif;
+@function text-color($color){
+@if(ligthness($color)>70){
+    @return #333;
+
+}
+@else{
+    @return #fff;
+}
+}
