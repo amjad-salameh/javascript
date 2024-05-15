@@ -67,15 +67,18 @@
 
     <script>
       function moveSlide(direction) {
-        const slides = document.querySelectorAll("img");
-        const currentIndex = document.getElementsByClassName("active");
-        if (direction === 1) {
-          currentIndex[0].classList.remove("active");
-          const index = slides.findIndex(currentIndex);
-          slides[index + 1].classList.add("active");
-        } else {
+        const slides = document.querySelectorAll("#slider img");
+        const currentIndex = document.querySelector("#slider img.active");
+        const currentIndexInArray = Array.from(slides).indexOf(currentIndex);
+        if (direction === 1 && currentIndexInArray < slides.length - 1) {
+          currentIndex.classList.remove("active");
+          slides[currentIndexInArray + 1].classList.add("active");
+        } else if (direction === -1  && currentIndexInArray > 0) {
+          currentIndex.classList.remove("active");
+          slides[currentIndexInArray - 1].classList.add("active");
         }
       }
+  
     </script>
   </body>
 </html>
