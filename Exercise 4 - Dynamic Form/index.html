@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercise 4 - Dynamic Form.</title>
+  </head>
+  <body>
+    <form>
+      <div class="faterForm">
+        <div id="inputform">
+          <input type="text" , placeholder="input" />
+          <button onclick="">Remove</button>
+        </div>
+        <br />
+      </div>
+      <button id="add-Field">Add</button>
+    </form>
+    <script>
+      function addField() {
+        const form = document.querySelector(".faterForm");
+        const input = document.createElement("div");
+        input.innerHTML = ` <input type="text" , placeholder="input" />
+          <button onclick="">Remove</button>`;
+        form.appendNextChild(input);
+      }
+      document.addEventListener("click", function () {
+        if (event.target.id === "add-Field") {
+          addField();
+        }
+      });
+    </script>
+  </body>
+</html>
