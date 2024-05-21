@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>loop Extra</title>
+  </head>
+  <body>
+    <script>
+      function movePlayer(grid, position, direction) {
+        let x = position.x;
+        let y = position.y;
+        switch (direction) {
+          case "north":
+            y--;
+            break;
+          case "south":
+            y++;
+            break;
+          case "east":
+            x++;
+            break;
+          case "west":
+            x--;
+            break;
+        }
+        if (x < 0 || x > grid.length - 1 || y < 0 || y > grid[0].length - 1) {
+          return position;
+        } else {
+          return { x: x, y: y };
+        }
+      }
+      console.log(
+        movePlayer(
+          [
+            [0, 2, 0],
+            [1, 3, 0],
+            [0, 2, 0],
+          ],
+          { x: 1, y: 1 },
+          "north"
+        )
+      );
+      function battle(playerHP, playerAttack, enemyHP, enemyAttack) {
+        while (playerHP > 0 && enemyHP > 0) {
+          enemyHP -= playerAttack;
+          playerHP -= enemyAttack;
+        }
+        if (playerHP > 0) {
+          return "Player wins";
+        } else {
+          return "Enemy wins";
+        }
+      }
+      console.log(battle(100, 20, 50, 15));
+      function findEnemies(grid) {
+        let enemies = [];
+        for (let i = 0; i < grid.length; i++) {
+          for (let j = 0; j < grid[i].length; j++) {
+            if (grid[i][j] === 2) {
+              enemies.push({ x: i, y: j });
+            }
+          }
+        }
+        return enemies;
+      }
+      console.log(
+        findEnemies([
+          [0, 2, 0],
+          [1, 3, 0],
+          [0, 2, 0],
+        ])
+      );
+      function findPathToGoal(playerPosition, goalPosition) {
+        let path = [];
+        while (
+          playerPosition.x !== goalPosition.x ||
+          playerPosition.y !== goalPosition.y
+        ) {
+          if (playerPosition.x < goalPosition.x) {
+            path.push("east");
+            playerPosition.x++;
+          } else if (playerPosition.x > goalPosition.x) {
+            path.push("west");
+            playerPosition.x--;
+          }
+          if (playerPosition.y < goalPosition.y) {
+            path.push("south");
+            playerPosition.y++;
+          } else if (playerPosition.y > goalPosition.y) {
+            path.push("north");
+            playerPosition.y--;
+          }
+        }
+        return path;
+      }
+      console.log(findPathToGoal({ x: 1, y: 1 }, { x: 0, y: 2 }));
+    </script>
+  </body>
+</html>
